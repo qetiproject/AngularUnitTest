@@ -22,12 +22,20 @@ describe('HeroesComponent', () => {
     describe('delete', () => {
         it('should remove hero from the list', () => {
             mockHeroService.deleteHero.and.returnValue(of(true))
-
             component.heroes = HEROES
-            
             component.delete(HEROES[2])
-
             expect(component.heroes.length).toBe(2)
         })
+
+        it('should call deleteHero', () => {
+            mockHeroService.deleteHero.and.returnValue(of(true))
+            component.heroes = HEROES
+            component.delete(HEROES[2])
+            expect(mockHeroService.deleteHero).toHaveBeenCalledWith(HEROES[2])
+        })
+
+        // toHaveBeenCalled -check if this method is called
+        // toHaveBeenCalledWith - check if this method is called with right parametrs
+        // xit - skip this testing method
     })
 })
